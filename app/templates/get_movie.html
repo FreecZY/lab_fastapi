@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{{ movie.name }} — Подробности</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .poster {
+            max-width: 320px;
+            max-height: 480px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h1 class="h3 mb-0">{{ movie.name }}</h1>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4 d-flex justify-content-center">
+                {% if movie.poster %}
+                <img src="/uploads/{{ movie.poster }}" alt="Постер — {{ movie.name }}"
+                    class="img-fluid poster rounded shadow-sm">
+                {% else %}
+                <div class="border rounded d-flex align-items-center justify-content-center poster bg-light text-muted">
+                    <div class="text-center px-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
+                            class="bi bi-film" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm1 1v2h2V2H1zm3 0v2h2V2H4zm3 0v2h2V2H7zm3 0v2h2V2h-2zM1 5v2h2V5H1zm3 0v2h2V5H4zm3 0v2h2V5H7zm3 0v2h2V5h-2zM1 9v2h2V9H1zm3 0v2h2V9H4zm3 0v2h2V9H7zm3 0v2h2V9h-2zM1 13v2h14v-2H1z" />
+                        </svg>
+                        <div class="mt-2 small">Нет постера</div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie.name }}</h5>
+
+                        <dl class="row">
+                            <dt class="col-sm-4">ID</dt>
+                            <dd class="col-sm-8">{{ movie.id }}</dd>
+
+                            <dt class="col-sm-4">Режиссёр</dt>
+                            <dd class="col-sm-8">{{ movie.director }}</dd>
+
+                            <dt class="col-sm-4">Цена</dt>
+                            <dd class="col-sm-8">{{ '%.2f'|format(movie.cost) }} ₽</dd>
+
+                            <dt class="col-sm-4">Доступность</dt>
+                            <dd class="col-sm-8">
+                                {% if movie.is_available %}
+                                <span class="badge bg-success">В наличии</span>
+                                {% else %}
+                                <span class="badge bg-danger">Нет в наличии</span>
+                                {% endif %}
+                            </dd>
+                        </dl>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

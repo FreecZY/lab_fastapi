@@ -1,0 +1,17 @@
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Локальные файлы
+/uploads/*
+!/uploads/.gitkeep
+
+.env
